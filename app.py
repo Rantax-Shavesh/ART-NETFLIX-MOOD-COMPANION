@@ -88,3 +88,56 @@ if st.button("Suggest Something"):
     name, desc = random.choice(netflix_recs[mood])
     st.success(f"**{name}** — {desc}")
 
+# -----------------------
+# EXTRA FEATURES
+# -----------------------
+
+st.markdown("---")
+
+# 1. REFRESH BUTTON
+if st.button("🎁 Inspire Me Again"):
+    st.rerun()
+
+# 2. ART REFERENCE IMAGE
+st.subheader("🖼️ Art Reference")
+
+art_refs = [
+    "https://i.imgur.com/jx9zEJb.jpeg",
+    "https://i.imgur.com/2pOq1Lx.jpeg",
+    "https://i.imgur.com/Dm4ECjQ.jpeg",
+    "https://i.imgur.com/U6y9xPo.jpeg"
+]
+
+st.image(random.choice(art_refs), use_column_width=True)
+
+st.markdown("---")
+
+# 3. SIMPLE SKETCHPAD
+st.subheader("✏️ Sketchpad")
+
+try:
+    from streamlit_drawable_canvas import st_canvas
+
+    canvas = st_canvas(
+        stroke_width=3,
+        stroke_color="#000000",
+        background_color="#FFFFFF",
+        width=400,
+        height=300,
+        drawing_mode="freedraw",
+        key="canvas1"
+    )
+
+    if canvas.image_data is not None:
+        st.download_button(
+            "Download Sketch",
+            canvas.image_data.tobytes(),
+            "sketch.png",
+            "image/png"
+        )
+
+except:
+    st.warning("Install 'streamlit-drawable-canvas' to enable sketchpad.")
+    st.code("pip install streamlit-drawable-canvas")
+
+
