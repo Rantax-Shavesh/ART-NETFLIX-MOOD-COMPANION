@@ -106,11 +106,11 @@ st.markdown("---")
 st.subheader("🖼️ Art Reference (Aesthetic Drawing Images)")
 
 art_refs = [
-    "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-    "https://images.unsplash.com/photo-1549887534-3db1bd59dcca",
-    "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e",
-    "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5",
-    "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f"
+    "https://i.pinimg.com/originals/bf/49/f5/bf49f598ca63628cebdb935739eebc8b.jpg",
+    "https://i.pinimg.com/736x/f3/28/04/f328048f1665a9088e11ceb64f99c6ea.jpg",
+    "https://i.pinimg.com/736x/e5/d7/e2/e5d7e2aebab8db8cf232c981aedd9702.jpg",
+    "https://i.pinimg.com/736x/b5/86/9c/b5869c3dfbc99a5135bb6b727efbb70d.jpg",
+    "https://i.pinimg.com/736x/4b/fd/79/4bfd79de26d171cdc301875aad72dd18.jpg"
 ]
 
 st.image(random.choice(art_refs), use_column_width=True)
