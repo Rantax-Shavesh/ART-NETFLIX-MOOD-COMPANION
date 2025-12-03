@@ -102,10 +102,12 @@ if st.button("🎁 Inspire Me Again"):
 st.subheader("🖼️ Art Reference")
 
 art_refs = [
-    "https://i.imgur.com/jx9zEJb.jpeg",
-    "https://i.imgur.com/2pOq1Lx.jpeg",
-    "https://i.imgur.com/Dm4ECjQ.jpeg",
-    "https://i.imgur.com/U6y9xPo.jpeg"
+    "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
+    "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5",
+    "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e",
+    "https://images.unsplash.com/photo-1519681393784-d120267933ba",
+    "https://images.unsplash.com/photo-1517694712202-14dd9538aa97"
+
 ]
 
 st.image(random.choice(art_refs), use_column_width=True)
