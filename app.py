@@ -98,48 +98,82 @@ st.markdown("---")
 if st.button("🎁 Inspire Me Again"):
     st.rerun()
 
-# 2. ART REFERENCE IMAGE
-st.subheader("🖼️ Art Reference")
+# -----------------------
+# NEW ART REFERENCE (drawable style)
+# -----------------------
+
+st.markdown("---")
+st.subheader("🖼️ Art Reference (Aesthetic Drawing Images)")
 
 art_refs = [
     "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee",
-    "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5",
+    "https://images.unsplash.com/photo-1549887534-3db1bd59dcca",
     "https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e",
-    "https://images.unsplash.com/photo-1519681393784-d120267933ba",
-    "https://images.unsplash.com/photo-1517694712202-14dd9538aa97"
-
+    "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5",
+    "https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f"
 ]
 
 st.image(random.choice(art_refs), use_column_width=True)
 
-st.markdown("---")
+# -----------------------
+# ADVANCED SKETCHPAD WITH COLOR PALETTE
+# -----------------------
 
-# 3. SIMPLE SKETCHPAD
+st.markdown("---")
 st.subheader("✏️ Sketchpad")
 
+# Make palette interactive
+custom_color_palette = [
+    "#000000", "#FFFFFF", "#FF0000", "#FFA500", "#FFFF00",
+    "#008000", "#00FFFF", "#0000FF", "#800080", "#FFC0CB",
+    "#8B4513", "#4B0082", "#A52A2A", "#00FF00"
+]
+
+# Color selection buttons
+selected_color = st.radio(
+    "Choose your drawing color:",
+    options=custom_color_palette,
+    index=0,
+    horizontal=True,
+    format_func=lambda x: ""
+)
+
+# display colored boxes
+color_boxes = st.columns(len(custom_color_palette))
+for idx, col in enumerate(color_boxes):
+    with col:
+        st.markdown(
+            f"""
+            <div style='width:25px;height:25px;background:{custom_color_palette[idx]};
+            border:2px solid {"#FFF" if custom_color_palette[idx] == selected_color else "#000"};
+            border-radius:5px;margin-bottom:-10px'></div>
+            """,
+            unsafe_allow_html=True
+        )
+
+# SKETCHPAD (bigger)
 try:
     from streamlit_drawable_canvas import st_canvas
 
     canvas = st_canvas(
-        stroke_width=3,
-        stroke_color="#000000",
+        stroke_width=4,
+        stroke_color=selected_color,
         background_color="#FFFFFF",
-        width=400,
-        height=300,
+        width=700,
+        height=500,
         drawing_mode="freedraw",
-        key="canvas1"
+        key="canvas_big"
     )
 
     if canvas.image_data is not None:
         st.download_button(
-            "Download Sketch",
+            "📥 Download Your Art",
             canvas.image_data.tobytes(),
-            "sketch.png",
+            "my_sketch.png",
             "image/png"
         )
 
-except:
-    st.warning("Install 'streamlit-drawable-canvas' to enable sketchpad.")
-    st.code("pip install streamlit-drawable-canvas")
-
+except Exception as e:
+    st.warning("Sketchpad requires 'streamlit-drawable-canvas'. Add to requirements.txt")
+    st.code("streamlit-drawable-canvas")
 
